@@ -25,3 +25,34 @@ $factory->define(User::class, function (Faker $faker) {
         'remember_token' => Str::random(10),
     ];
 });
+
+$factory->define(\App\Course::class, function (Faker $faker) {
+   return [
+     'name' => $faker->sentence,
+     'description' => $faker->text,
+     'difficulty' => rand(0, 4)
+   ];
+});
+
+$factory->define(\App\Lesson::class, function (Faker $faker) {
+   $type = rand(0, 1);
+    return [
+        'name' => $faker->sentence,
+        'type' => $type,
+        'link' => $type == 0 ? 'pdfs/example.pdf' : 'https://www.youtube.com/embed/z0NfI2NeDHI',
+        'content' => $faker->realText(500),
+        'required_time' => rand(10, 120) / 10.0
+   ];
+});
+
+$factory->define(\App\Question::class, function (Faker $faker) {
+   return [
+       'question' => $faker->sentence,
+       'answer_1' => 'Correct',
+       'answer_2' => $faker->sentence,
+       'answer_3' => $faker->sentence,
+       'answer_4' => $faker->sentence,
+       'answer_5' => $faker->sentence,
+       'correct' => 1
+   ];
+});

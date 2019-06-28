@@ -4,8 +4,8 @@
     <div class="row">
       <div class="col-12 toolbar">
         <b-button-group>
-          <b-button>Sign in</b-button>
-          <b-button>Sign up</b-button>
+          <b-button @click="$router.push({ name: 'Login' })">Sign in</b-button>
+          <b-button @click="$router.push({ name: 'Registration' })">Sign up</b-button>
         </b-button-group>
       </div>
     </div>

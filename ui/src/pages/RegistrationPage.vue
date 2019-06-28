@@ -4,9 +4,6 @@
       <h3>
         Registration
       </h3>
-      <b-button @click="showFirst ^= true">
-        Click me
-      </b-button>
       <transition name="bounce">
         <div v-if="currentStep === 0">
           <div>
@@ -36,6 +33,8 @@
                             v-model="form.surname"
                             :state="showErrors && secondStageErrors.surname ? false : null" />
             </b-input-group>
+            <b-form-textarea  placeholder="Hobbies"
+                              v-model="form.hobby" />
           </b-form>
         </div>
         <div  v-else-if="currentStep === 2">
@@ -51,8 +50,8 @@
           <h4>
             Skills
           </h4>
-          <multiselect  :options="availableLanguages"
-                        v-model="form.languages"
+          <multiselect  :options="availableSkills"
+                        v-model="form.skills"
                         track-by="id"
                         label="name"
                         :close-on-select="false"
@@ -67,8 +66,7 @@
           </b-button>
         </div>
         <div class="col">
-          <b-button @click="goNext"
-                    :disabled="!canGoRight">
+          <b-button @click="goNext">
             <font-awesome-icon  :icon="faCaretSquareRight" />
           </b-button>
         </div>
@@ -79,8 +77,7 @@
 
 <script>
 import { faCaretSquareLeft, faCaretSquareRight } from '@fortawesome/free-solid-svg-icons'
-import availableLanguages from '../languages.json'
-import availableSkills from '../skills.json'
+import axios from 'axios'
 export default {
   name: 'RegistrationPage',
   data () {
@@ -94,9 +91,12 @@ export default {
         password: '1',
         name: '1',
         surname: '1',
+        hobby: '',
         languages: [],
         skills: []
       },
+      availableLanguages: [],
+      availableSkills: [],
       repeatPassword: '1',
       showErrors: false
     }
@@ -107,14 +107,9 @@ export default {
     canGoLeft () {
       return this.currentStep > 0
     },
-    canGoRight () {
-      return this.currentStep < this.maxGoneStep
-    },
     doesPasswordMatch () {
       return this.form.password === this.repeatPassword
     },
-    availableLanguages: () => availableLanguages,
-    availableSkills: () => availableSkills,
     firstStageErrors () {
       return {
         email: !this.form.email,
@@ -128,11 +123,12 @@ export default {
       }
     }
   },
+  mounted () {
+    this.loadAvailableSkills()
+    this.loadAvailableLanguages()
+  },
   methods: {
     goNext () {
-      if (!this.canGoRight) {
-        return
-      }
       if (this.currentStep === 0) {
         if (Object.values(this.firstStageErrors).some(x => x)) {
           this.showErrors = true
@@ -149,8 +145,36 @@ export default {
           return
         }
       }
+      if (this.currentStep === 2) {
+        this.register()
+        return
+      }
       this.showErrors = false
       this.currentStep++
+    },
+    register () {
+      let form = JSON.parse(JSON.stringify(this.form))
+      form.skills = form.skills.map(s => s.id)
+      form.languages = form.languages.map(s => s.id)
+
+      axios.post('/users', form).then(response => {
+        this.$cookie.set('token', response.data.token)
+        this.$store.commit('setUserInfo', response.data.user)
+        this.$store.commit('setToken', response.data.token)
+        this.$router.push({ name: 'MyProfile' })
+      }).catch(() => {
+        alert('Email is already in use')
+      })
+    },
+    loadAvailableLanguages () {
+      axios.get('/languages').then(response => {
+        this.availableLanguages = response.data
+      })
+    },
+    loadAvailableSkills () {
+      axios.get('/skills').then(response => {
+        this.availableSkills = response.data
+      })
     }
   }
 }
