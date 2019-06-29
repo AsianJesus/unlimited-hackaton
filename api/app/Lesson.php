@@ -18,6 +18,10 @@ class Lesson extends Model
         return $this->hasMany(UserLesson::class);
     }
 
+    public function course() {
+        return $this->belongsTo(Course::class);
+    }
+
     public function my_passes() {
         $my_id = auth()->id();
         return $this->hasMany(UserLesson::class)->where('user_id', $my_id);

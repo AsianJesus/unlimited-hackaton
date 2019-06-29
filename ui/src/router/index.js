@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
 import HomePage from '@/pages/HomePage'
 import RegistrationPage from '@/pages/RegistrationPage'
 import FieldPage from '@/pages/FieldPage'
@@ -11,6 +10,10 @@ import ActualCoursePage from '@/pages/CurrentCoursePage'
 import CourseDashboard from '@/pages/CourseCompleted'
 import LessonPage from '@/pages/LessonPage'
 import ExamPage from '@/pages/ExamPage'
+import ProfilePage from '@/pages/ProfilePage'
+import MyFriendsComponent from '@/pages/MyFriendsComponent'
+import ChatsPage from '@/pages/ChatsPage'
+import UserProfile from '../pages/UserProfile'
 
 Vue.use(Router)
 
@@ -34,7 +37,7 @@ export default new Router({
     {
       path: '/profile',
       name: 'MyProfile',
-      component: HelloWorld
+      component: ProfilePage
     },
     {
       path: '/fields/:name',
@@ -70,6 +73,21 @@ export default new Router({
       path: '/exams/:id',
       name: 'Exam',
       component: ExamPage
+    },
+    {
+      path: '/profile/friends',
+      name: 'MyFriends',
+      component: MyFriendsComponent
+    },
+    {
+      path: '/profile/messenger',
+      name: 'Messenger',
+      component: ChatsPage
+    },
+    {
+      path: '/profile/:id',
+      name: 'UserProfile',
+      component: UserProfile
     }
   ]
 })

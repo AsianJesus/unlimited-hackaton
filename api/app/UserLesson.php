@@ -10,7 +10,7 @@ class UserLesson extends Model
         'lesson_id', 'user_id'
     ];
 
-    protected function lesson() {
+    public function lesson() {
         return $this->belongsTo(Lesson::class);
     }
 }

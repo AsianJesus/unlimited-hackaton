@@ -15,6 +15,7 @@ import Vuex from 'vuex'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import './global_styles.css'
 
 library.add(faUserSecret)
 const VueCookie = require('vue-cookie')

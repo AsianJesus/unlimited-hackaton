@@ -30,7 +30,9 @@
       <div class="col-12"
            style="text-align: center;"
            @click="scrollToFields" >
-        <button type="button" class="btn btn-outline-primary">Scroll</button>
+        <button type="button" class="btn btn-light scroll-down-button">
+          <font-awesome-icon :icon="iconCaret" />
+        </button>
       </div>
     </div>
     <div class ="row spec"
@@ -60,6 +62,7 @@
 
 <script>
 import axios from 'axios'
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 export default {
   name: 'HomePage',
   data () {
@@ -67,7 +70,14 @@ export default {
       fields: []
     }
   },
+  computed: {
+    iconCaret: () => faCaretDown
+  },
   mounted () {
+    if (this.$store.state.isLogged && this.$store.state.shouldRedirect) {
+      this.$store.commit('setShouldRedirect', false)
+      this.$router.push({name: 'MyProfile'})
+    }
     this.loadFields()
   },
   methods: {
@@ -107,7 +117,7 @@ export default {
 }
 
 .join{
-  padding: 1.7rem 2.7rem;
+  padding: 1.2rem 2.2rem;
   border-radius: 15rem;
   font-size: 1.3rem;
 }
@@ -118,5 +128,11 @@ export default {
 }
 .info li{
   margin: 1rem auto;
+}
+.scroll-down-button {
+  border-radius: 100%;
+}
+.home-page{
+  padding-bottom: 1rem;
 }
 </style>

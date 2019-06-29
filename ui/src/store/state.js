@@ -1,5 +1,7 @@
 export default {
   token: null,
   userInfo: {},
-  isLogged: false
+  isLogged: false,
+  shouldRedirect: true,
+  friends: []
 }

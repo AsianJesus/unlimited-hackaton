@@ -2,11 +2,16 @@
   <div id="app"
        class="container-fluid">
     <div class="row toolbar">
-      <div class="col-sm " style="padding: 1rem 1rem; text-align: left;">
+      <router-link :to="{name: 'Home'}"
+                   class="col-sm"
+                   style="padding: 1rem 1rem; text-align: left;">
         <img src="@/assets/icon.png" class="img-fluid logo-image" alt="Responsive image">
         <span class="text-right logo-text">Dəyişiklik səndən başlayır!</span>
-      </div>
-      <div class="col-sm" style="text-align: right; padding: 1rem 1rem">
+      </router-link>
+      <div class="col-sm"
+           style="text-align: right; padding: 1rem 1rem"
+           v-if="!isLogged"
+      >
         <div class="btn-group" role="group" aria-label="Basic example">
           <div class="btn-group btn-group-lg" role="group" aria-label="...">
             <button type="button"
@@ -18,17 +23,57 @@
           </div>
         </div>
       </div>
+      <div class="col-sm"
+           style="text-align: right; padding: 1rem 1rem"
+            v-else>
+        <b-button varinat="success"
+                  size="sm"
+                  @click="$router.push({name: 'MyProfile'})">
+          <font-awesome-icon :icon="iconUser"
+                             :scale="1.5" />
+        </b-button>
+        <b-button variant="primary"
+                  size="sm"
+                  @click="logout" >
+          <font-awesome-icon :icon="iconLogout"
+                             :scale="1.5"/>
+        </b-button>
+      </div>
     </div>
     <router-view />
   </div>
 </template>
 
 <script>
+import { faSignOutAlt, faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import axios from 'axios'
 export default {
   name: 'App',
   beforeMount () {
     let token = this.$cookie.get('token')
     this.$store.commit('setToken', token)
+    if (token) {
+      this.loadUserInfo()
+    }
+  },
+  computed: {
+    isLogged () {
+      return this.$store.state.isLogged
+    },
+    iconLogout: () => faSignOutAlt,
+    iconUser: () => faUserCircle
+  },
+  methods: {
+    logout () {
+      this.$cookie.set('token', '')
+      this.$store.commit('setToken', null)
+      this.$router.push({ name: 'Home' })
+    },
+    loadUserInfo () {
+      axios.get('/user').then(({ data }) => {
+        this.$store.commit('setUserInfo', data)
+      })
+    }
   }
 }
 </script>
