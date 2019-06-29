@@ -16,8 +16,7 @@ class CreateUserLessonsTable extends Migration
         Schema::create('user_lessons', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('lesson_id');
-            $table->integer('course_id');
-            $table->boolean('is_finished')->default(false);
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

@@ -1,12 +1,22 @@
 <template>
   <div id="app"
        class="container-fluid">
-    <div class="row">
-      <div class="col-12 toolbar">
-        <b-button-group>
-          <b-button @click="$router.push({ name: 'Login' })">Sign in</b-button>
-          <b-button @click="$router.push({ name: 'Registration' })">Sign up</b-button>
-        </b-button-group>
+    <div class="row toolbar">
+      <div class="col-sm " style="padding: 1rem 1rem; text-align: left;">
+        <img src="@/assets/icon.png" class="img-fluid logo-image" alt="Responsive image">
+        <span class="text-right logo-text">Dəyişiklik səndən başlayır!</span>
+      </div>
+      <div class="col-sm" style="text-align: right; padding: 1rem 1rem">
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <div class="btn-group btn-group-lg" role="group" aria-label="...">
+            <button type="button"
+                    @click="$router.push({ name: 'Login' })"
+                    class="btn btn-primary">Sign In</button>
+            <button type="button"
+                    @click="$router.push({ name: 'Registration' })"
+                    class="btn btn-primary">Sign Up</button>
+          </div>
+        </div>
       </div>
     </div>
     <router-view />
@@ -26,10 +36,19 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 .toolbar{
-  text-align: right
+  background-color: #00008B;
+}
+
+.logo-text{
+  font-weight: bold;
+  color: #fff;
+  font-size: 1.3rem;
+}
+
+.logo-image{
+  height: 60px;
 }
 </style>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

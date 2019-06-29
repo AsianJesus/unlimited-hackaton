@@ -15,4 +15,8 @@ class Speciality extends Model
     public function courses() {
         return $this->hasMany(Course::class);
     }
+
+    public function field() {
+        return $this->belongsTo(Field::class);
+    }
 }

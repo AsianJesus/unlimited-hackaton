@@ -39,7 +39,7 @@ $factory->define(\App\Lesson::class, function (Faker $faker) {
     return [
         'name' => $faker->sentence,
         'type' => $type,
-        'link' => $type == 0 ? 'pdfs/example.pdf' : 'https://www.youtube.com/embed/z0NfI2NeDHI',
+        'link' => $type == 0 ? 'pdfs/example.pdf' : 'https://www.youtube.com/embed/q-YWNUO31kk',
         'content' => $faker->realText(500),
         'required_time' => rand(10, 120) / 10.0
    ];

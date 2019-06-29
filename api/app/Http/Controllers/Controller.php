@@ -47,7 +47,7 @@ class Controller extends BaseController
 
     public function getById($id)
     {
-        return $this->model::where('id', $id)->get();
+        return $this->model::where('id', $id)->first();
     }
 
     public function updateMany(Request $request) {

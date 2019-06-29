@@ -27,3 +27,15 @@ Route::get('/users/{id}', 'AuthenticationController@getById');
 
 Route::get('/languages', 'LanguagesController@getAll');
 Route::get('/skills', 'SkillsController@getAll');
+
+Route::get('/fields', 'FieldsController@getAll');
+Route::get('/fields/{name}', 'FieldsController@getByName');
+
+Route::get('/specialities/{name}', 'SpecialitiesController@getByName');
+
+Route::get('/courses/{id}', 'CoursesController@getById');
+Route::get('/courses/{id}/dashboard', 'CoursesController@getDashboard');
+
+Route::get('/lessons/{id}', 'LessonsController@getById');
+
+Route::get('/exams/{id}', 'ExamController@getById');

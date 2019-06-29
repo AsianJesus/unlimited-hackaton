@@ -68,7 +68,7 @@ class FieldsSeeder extends Seeder
                         $exam = $course->exams()->create([ 'lesson_id' => $index * 2]);
 
                         // Create questions for exam
-                        foreach(factory(\App\Question::class, 10) as $question) {
+                        foreach(factory(\App\Question::class, 10)->make() as $question) {
                             $exam->questions()->create($question->toArray());
                         }
 

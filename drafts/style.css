@@ -1,0 +1,90 @@
+.toolbar{
+	background-color:  	#00008B;
+}
+.main-start{
+	height: 100vh;
+	padding: 3rem 0;
+	background-color: rgba(50, 115, 220, 0.3);;
+}
+.main-image{
+	border: 1px solid #00000030;
+	border-radius: 15rem;
+	box-shadow: 0 0 1px 2px #00000010;
+    width: 420px;
+    height: 420px;
+}
+
+.logo-image{
+    height: 60px;
+}
+
+.loz{
+
+	font-size: 1.4rem;
+	font-weight: bold;
+	text-align: right;
+}
+
+.about{
+	font-size: 2rem;
+	font-weight: bold;
+	text-align: right;
+	padding-top: 3rem; 
+	padding-right: 7rem;
+
+}
+
+.spec {
+	height: 100vh;
+}
+
+.join-holder{
+	text-align: center;
+}
+
+.join{
+	padding: 1.7rem 2.7rem;
+	border-radius: 15rem;
+	font-size: 1.3rem;
+}
+
+.logo-text{
+	font-weight: bold;
+	color: #fff;
+	font-size: 1.3rem;
+}
+
+.description{
+	font-size: 1.1rem;
+}
+
+.inf{
+	font-style: italic;
+}
+
+.l-card-holder{
+	padding: .5rem 1rem;
+	position: relative;
+}
+
+.l-card{
+	font-size: .95rem;
+	padding: .5rem 1rem;
+	border: 1px solid black;
+	border-radius: 3rem;
+}
+
+.l-card::after{
+	width: 5px;
+	position: absolute;
+	top: 50%;
+	bottom: 0;
+	right: 0;
+	transform: translateY(-50%);
+	margin: auto;
+	content: '>';
+}
+
+.l-card-holder:last-of-type .l-card::after{
+	content: '';
+}

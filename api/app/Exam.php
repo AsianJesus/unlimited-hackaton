@@ -13,4 +13,8 @@ class Exam extends Model
     public function skills() {
         return $this->hasManyThrough(Skill::class, ExamSkill::class, 'exam_id', 'id', 'id', 'skill_id');
     }
+
+    public function questions() {
+        return $this->hasMany(Question::class);
+    }
 }
