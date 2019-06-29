@@ -25,7 +25,11 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  beforeMount () {
+    let token = this.$cookie.get('token')
+    this.$store.commit('setToken', token)
+  }
 }
 </script>
 

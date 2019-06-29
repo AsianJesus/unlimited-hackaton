@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserCourse extends Model
+class UserPointChange extends Model
 {
     protected $fillable = [
-        'user_id', 'course_id', 'has_passed'
+        'user_id', 'points', 'date'
     ];
 }

@@ -16,7 +16,8 @@
         </div>
         <div class="join-course-holder">
           <b-button class="join-course"
-                    variant="outline-primary" >
+                    variant="outline-primary"
+                    @click="join" >
             Join course
           </b-button>
         </div>
@@ -53,17 +54,38 @@ export default {
   },
   watch: {
     id (val) {
-      this.loadCourse(val)
+      this.checkIfGoing(val)
     }
   },
   mounted () {
-    this.loadCourse()
+    this.checkIfGoing()
   },
   methods: {
     loadCourse (id) {
       axios.get(`/courses/${id || this.id}`).then(response => {
         this.course = response.data
         this.course.totalTime = parseInt(this.course.lessons.reduce((a, b) => a + b['required_time'] || 0, 0).toString())
+      })
+    },
+    checkIfGoing (id) {
+      axios.get(`/courses/${id || this.id}/check`).then(({ data }) => {
+        if (data && data !== 'false') {
+          this.redirectToActual()
+        } else {
+          this.loadCourse(id || this.id)
+        }
+      })
+    },
+    redirectToActual (id) {
+      this.$router.push({name: 'ActualCourse', params: { id: id || this.id }})
+    },
+    join () {
+      if (!this.$store.state.isLogged) {
+        this.$router.push({ name: 'Login' })
+        return
+      }
+      axios.post(`/courses/${this.id}`).then(() => {
+        this.redirectToActual(this.id)
       })
     }
   }

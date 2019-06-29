@@ -9,4 +9,8 @@ class UserExam extends Model
     protected $fillable = [
         'user_id', 'exam_id', 'score', 'is_finished'
     ];
+
+    public function exam() {
+        return $this->belongsTo(Exam::class);
+    }
 }

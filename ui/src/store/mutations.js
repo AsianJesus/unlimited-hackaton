@@ -5,8 +5,9 @@ export default {
   },
   setToken (state, token) {
     axios.defaults.headers.common = {
-      'Authentication': `Bearer ${token}`
+      'Authorization': `Bearer ${token}`
     }
     state.token = token
+    state.isLogged = token !== null
   }
 }

@@ -32,6 +32,12 @@
           href="#"
           ref="downloader"></a>
     </div>
+    <div v-if="canMarkRead">
+      <b-button variant="outline-primary"
+                @click="markAsRead" >
+        Mark as read
+      </b-button>
+    </div>
   </div>
 </template>
 
@@ -51,7 +57,10 @@ export default {
     id () {
       return this.$route.params.id
     },
-    saveIcon: () => faSave
+    saveIcon: () => faSave,
+    canMarkRead () {
+      return this.$store.state.isLogged && !this.lesson.my_passes_count
+    }
   },
   mounted () {
     this.load()
@@ -72,6 +81,11 @@ export default {
         this.$refs.downloader.href = `${serverURL}/../${this.lesson.link}`
         this.$refs.downloader.click()
       }
+    },
+    markAsRead () {
+      axios.post(`/lessons/${this.id}`).then(() => {
+        this.$router.push({name: 'ActualCourse', params: {id: this.lesson.course_id}})
+      })
     }
   }
 }

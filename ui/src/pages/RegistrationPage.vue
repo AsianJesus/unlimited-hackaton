@@ -87,17 +87,17 @@ export default {
       currentStep: 0,
       maxGoneStep: 2,
       form: {
-        email: '1',
-        password: '1',
-        name: '1',
-        surname: '1',
+        email: '',
+        password: '',
+        name: '',
+        surname: '',
         hobby: '',
         languages: [],
         skills: []
       },
       availableLanguages: [],
       availableSkills: [],
-      repeatPassword: '1',
+      repeatPassword: '',
       showErrors: false
     }
   },
@@ -112,8 +112,8 @@ export default {
     },
     firstStageErrors () {
       return {
-        email: !this.form.email,
-        password: !this.form.password
+        email: !this.form.email || !this.form.email.match(/.+@.+\..+/),
+        password: !this.form.password || this.form.password.length < 5
       }
     },
     secondStageErrors () {

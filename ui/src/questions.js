@@ -36,13 +36,12 @@ function convertQuestions (questions) {
   return questions.map(q => {
     return {
       question: q.question,
-      difficulty: q.difficulty + 1,
       selected: null,
       isCorrect: null,
       answers: ['answer_1', 'answer_2', 'answer_3', 'answer_4'].map((a, i) => {
         return {
           answer: q[a],
-          correct: (i + 1) === q.correct_answer
+          correct: (i + 1) === q.correct
         }
       })
     }

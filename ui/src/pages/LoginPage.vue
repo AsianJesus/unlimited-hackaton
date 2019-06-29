@@ -5,6 +5,7 @@
         <b-form-input v-model="form.email"
                       placeholder="Email" />
         <b-form-input v-model="form.password"
+                      type="password"
                       placeholder="Password" />
         <div class="login-button-holder">
           <b-button @click="login"
@@ -13,6 +14,9 @@
           </b-button>
         </div>
       </b-form>
+      <div>
+        <router-link :to="{name: 'Registration'}">Don't have an account?</router-link>
+      </div>
     </div>
   </div>
 </template>

@@ -1,4 +1,5 @@
 export default {
   token: null,
-  userInfo: {}
+  userInfo: {},
+  isLogged: false
 }

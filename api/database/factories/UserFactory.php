@@ -30,7 +30,7 @@ $factory->define(\App\Course::class, function (Faker $faker) {
    return [
      'name' => $faker->sentence,
      'description' => $faker->text,
-     'difficulty' => rand(0, 4)
+     'difficulty' => rand(1, 4)
    ];
 });
 

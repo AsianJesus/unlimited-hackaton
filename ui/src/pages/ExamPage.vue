@@ -31,7 +31,9 @@
     </div>
     <div class="exam-exam">
       <div class="submit-btn" style="text-align: center; padding-top: 1rem;">
-        <button type="button" class="btn btn-primary" >Submit</button>
+        <button type="button"
+                @click="endExam"
+                class="btn btn-primary" >Submit</button>
       </div>
     </div>
   </div>
@@ -70,6 +72,9 @@ export default {
       })
     },
     endExam () {
+      if (!confirm('Are you sure?')) {
+        return
+      }
       let correctAnswers = this.questions.filter(q => q.answers[q.selected].correct)
       let score = correctAnswers.length / this.questions.length * 100
       if (score >= 90) {
@@ -88,6 +93,8 @@ export default {
     saveResults (score) {
       axios.post(`exams/${this.id}`, {
         score: score
+      }).then(() => {
+        this.$router.push({name: 'ActualCourse', params: {id: this.exam.course_id}})
       })
     }
   }

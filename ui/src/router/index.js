@@ -7,6 +7,7 @@ import FieldPage from '@/pages/FieldPage'
 import SpecialityPage from '@/pages/SpecialityPage'
 import LoginPage from '@/pages/LoginPage'
 import CoursePage from '@/pages/CoursePage'
+import ActualCoursePage from '@/pages/CurrentCoursePage'
 import CourseDashboard from '@/pages/CourseCompleted'
 import LessonPage from '@/pages/LessonPage'
 import ExamPage from '@/pages/ExamPage'
@@ -49,6 +50,11 @@ export default new Router({
       path: '/course/:id',
       name: 'Course',
       component: CoursePage
+    },
+    {
+      path: '/my-course/:id',
+      name: 'ActualCourse',
+      component: ActualCoursePage
     },
     {
       path: '/course/:id/dashboard',

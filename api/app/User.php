@@ -50,6 +50,10 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasManyThrough(Skill::class, UserSkill::class, 'user_id', 'id', 'id', 'skill_id');
     }
 
+    public function lessons() {
+        return $this->hasMany(UserLesson::class);
+    }
+
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
