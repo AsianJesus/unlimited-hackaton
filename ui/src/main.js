@@ -12,12 +12,11 @@ import { serverURL } from './config'
 import axios from 'axios'
 import store from './store'
 import Vuex from 'vuex'
-
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './global_styles.css'
-
 library.add(faUserSecret)
+
 const VueCookie = require('vue-cookie')
 // Tell Vue to use the plugin
 Vue.use(VueCookie)

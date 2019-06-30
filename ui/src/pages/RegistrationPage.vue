@@ -2,22 +2,33 @@
   <div class="registration-page row">
     <div class="registration-body align-self-center col-12 offset-md-3 col-md-6">
       <h3>
-        Registration
+        Qeydiyyat
       </h3>
+      <div>
+        <span class="step-indicator"
+            :class="{ 'step-activated': currentStep === 0 }"/>
+        <span class="step-indicator"
+            :class="{ 'step-activated': currentStep === 1 }"/>
+        <span class="step-indicator"
+            :class="{ 'step-activated': currentStep === 2 }"/>
+      </div>
       <transition name="bounce">
         <div v-if="currentStep === 0">
           <div>
             <b-form>
               <b-form-input placeholder="Email"
+                            class="registration-input"
                             v-model="form.email"
                             :state="showErrors && firstStageErrors.email ? false : null"
               />
               <b-form-input placeholder="Password"
                             type="password"
+                            class="registration-input"
                             v-model="form.password"
                             :state="showErrors && firstStageErrors.password ? false : null" />
               <b-form-input placeholder="Repeat password"
                             type="password"
+                            class="registration-input"
                             v-model="repeatPassword"
                             :state="showErrors && firstStageErrors.password ? false : null" />
             </b-form>
@@ -28,12 +39,15 @@
             <b-input-group>
               <b-form-input placeholder="Name"
                             v-model="form.name"
+                            class="registration-input"
                             :state="showErrors && secondStageErrors.name? false : null" />
               <b-form-input placeholder="Surname"
                             v-model="form.surname"
+                            class="registration-input"
                             :state="showErrors && secondStageErrors.surname ? false : null" />
             </b-input-group>
             <b-form-textarea  placeholder="Hobbies"
+                              class="registration-input"
                               v-model="form.hobby" />
           </b-form>
         </div>
@@ -45,6 +59,7 @@
                         v-model="form.languages"
                         track-by="id"
                         label="name"
+                        class="registration-input"
                         :close-on-select="false"
                         multiple />
           <h4>
@@ -54,19 +69,22 @@
                         v-model="form.skills"
                         track-by="id"
                         label="name"
+                        class="registration-input"
                         :close-on-select="false"
                         multiple />
         </div>
       </transition>
       <div class="reg-control-buttons row">
-        <div class="col">
+        <div class="col" style="text-align: left;">
           <b-button @click="currentStep--"
                     :disabled="!canGoLeft">
+            Previous
             <font-awesome-icon  :icon="faCaretSquareLeft" />
           </b-button>
         </div>
-        <div class="col">
+        <div class="col" style="text-align: right;">
           <b-button @click="goNext">
+            Next
             <font-awesome-icon  :icon="faCaretSquareRight" />
           </b-button>
         </div>
@@ -76,7 +94,7 @@
 </template>
 
 <script>
-import { faCaretSquareLeft, faCaretSquareRight } from '@fortawesome/free-solid-svg-icons'
+import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
 export default {
   name: 'RegistrationPage',
@@ -102,8 +120,8 @@ export default {
     }
   },
   computed: {
-    faCaretSquareLeft: () => faCaretSquareLeft,
-    faCaretSquareRight: () => faCaretSquareRight,
+    faCaretSquareLeft: () => faCaretLeft,
+    faCaretSquareRight: () => faCaretRight,
     canGoLeft () {
       return this.currentStep > 0
     },
@@ -197,5 +215,22 @@ export default {
     100% {
       transform: translateX(100%);
     }
+  }
+  .step-indicator{
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+    transition: all .5s linear;
+  }
+  .step-activated {
+    background-color: #000;
+  }
+  .registration-input{
+    margin: 1rem auto;
   }
 </style>

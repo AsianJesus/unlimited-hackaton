@@ -11,7 +11,7 @@
       <div class="col-sm-8 offset-2">
         <div class="card">
           <div class="card-body">
-            <h6 class="card-title">Question #{{ index }}</h6>
+            <h6 class="card-title">Question #{{ index + 1 }}</h6>
             <p class="card-text">{{ question.question }}?</p>
             <!-- Group of default radios - option 1 -->
             <div class="custom-control custom-radio"

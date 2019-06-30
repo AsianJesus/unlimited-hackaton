@@ -1,25 +1,28 @@
 <template>
-  <div class="field-page">
-    <div class= "row courses" style="padding-left: 33rem; padding-top: 3rem; ">
+  <div class="field-page row">
+    <b-nav vertical style="text-align: left;" >
+      <b-nav-item :to="{ name: 'Field', params: {name: name} }" style="font-size: 1.2rem;"> {{ name }} </b-nav-item>
+      <!--<b-nav-item :to="{ name: 'Field', params: {name: name} }">Top</b-nav-item>-->
+      <b-nav-item v-for="(speciality, index) in specialities"
+                  v-bind:key="index"
+          :to="{ name: 'Speciality', params: {name: speciality.name} }">{{ speciality.name }}</b-nav-item>
+      <!--<b-nav-item-dropdown text="Specialities"
+                           dropright>
+        <b-dropdown-item  v-for="(speciality, index) in specialities"
+                          v-bind:key="index"
+                          >
+          {{ speciality.name }}
+        </b-dropdown-item>
+      </b-nav-item-dropdown>-->
+    </b-nav>
+    <div class="col">
       <div>
-        <h2>{{ name }}</h2>
+        <h2 style="text-align: center;">{{ name }}</h2>
       </div>
-    </div>
-    <div class="row">
-      <b-nav vertical>
-        <b-nav-item :to="{ name: 'Field', params: {name: name} }">Top</b-nav-item>
-        <b-nav-item-dropdown text="Specialities"
-                             dropright>
-          <b-dropdown-item  v-for="(speciality, index) in specialities"
-                            v-bind:key="index"
-                            :to="{ name: 'Speciality', params: {name: speciality.name} }">
-            {{ speciality.name }}
-          </b-dropdown-item>
-        </b-nav-item-dropdown>
-      </b-nav>
       <div class="tab-content col" id="v-pills-tabContent">
         <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-          <table class="table table-striped">
+          {{ field.description }}
+          <!--<table class="table table-striped">
             <thead>
             <tr>
               <th scope="col">#</th>
@@ -52,8 +55,9 @@
               <td>3</td>
             </tr>
             </tbody>
-          </table>
+          </table>-->
         </div>
+        <hr>
         <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"></div>
       </div>
     </div>

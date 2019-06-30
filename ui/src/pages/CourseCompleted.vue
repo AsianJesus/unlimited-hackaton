@@ -5,7 +5,6 @@
         <h2>Course name</h2>
       </div>
     </div>
-    {{ users }}
     <div>
       <table class="table table-striped">
         <thead>

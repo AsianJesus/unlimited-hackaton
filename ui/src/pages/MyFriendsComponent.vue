@@ -2,13 +2,27 @@
   <div class="my-friends-component">
     <div class="row">
       <profile-navbar />
-      <div class="col">
-        <div class="row"
-             v-for="(user, i) in users"
-             v-bind:key="i"
-             style="padding-top: 2rem; padding-left: 8rem;">
-          <div class="col" style="text-align: right;">
-            <img v-if="!user.avatar"
+      <div class="col-9">
+        <b-card-group deck>
+          <b-card :img-src="user.avatar ? `${baseServerURL}/../${user.avatar}` : null"
+                  class="user-card"
+                  style="max-width: 10rem;"
+                  img-top
+                  @click="$router.push({name: 'UserProfile', params: {id: user.id}})"
+                  v-for="(user, i) in users"
+                  v-bind:key="i">
+            <b-card-text>
+              {{ user.name }} {{ user.surname }}
+            </b-card-text>
+            <b-card-footer>
+              <b-button @click="isFriend(user.id) ? unfriend(user.id) : friend(user.id)"
+                        :variant="isFriend(user.id) ? 'warning': 'success'"
+              >{{ isFriend(user.id) ? 'Unfriend' : 'Friend '}}</b-button>
+            </b-card-footer>
+          </b-card>
+        </b-card-group>
+      </div>
+            <!--<img v-if="!user.avatar"
                  src="@/assets/user_avatar.png"
                  alt="Avatar"
                  class="avatar avtr"
@@ -18,8 +32,6 @@
                  alt="Avatar"
                  class="avatar avtr"
                  @click="showCrop = true" >
-          </div>
-          <div class="col" style="text-align: left;">
             <p>{{ user.name }} {{ user.surname }}</p>
           </div>
           <div class="col" style="text-align: right;">
@@ -31,8 +43,11 @@
                       'btn-success': !isFriend(user.id)
                     }"
             >{{ isFriend(user.id) ? 'Unfriend' : 'Friend '}}</button>
-          </div>
-        </div>
+          </div> -->
+      <div v-if="!users.length">
+        <h4>
+          Sizin dostuvuz yoxdur
+        </h4>
       </div>
     </div>
   </div>
@@ -61,7 +76,7 @@ export default {
     load () {
       axios.get('/friends').then(({ data }) => {
         this.users = data
-        this.friendsIDs = data.map(x => x.id)
+        this.friendsIDs = data.filter(x => x).map(x => x.id)
       })
     },
     friend (id) {
@@ -88,5 +103,8 @@ export default {
   cursor: pointer;
   border-radius: 100%;
   width: 100px;
+}
+.user-card{
+  cursor: pointer;
 }
 </style>

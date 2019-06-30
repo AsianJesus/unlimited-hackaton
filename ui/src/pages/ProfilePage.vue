@@ -33,48 +33,52 @@
             </div>
           </div>
         </div>-->
-        <h4>
-          Skills Progress
-        </h4>
-        <table class="table table-striped">
-          <thead>
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Degree</th>
-            <th scope="col">Date</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr v-for="(sg, index) in skillGains"
-              v-bind:key="index">
-            <th scope="row">{{ sg }}</th>
-            <td>{{ '' }}</td>
-            <td>{{ sg.date }}</td>
-          </tr>
-          <tr v-if="!skillGains.length">
-            <th colspan="3" style="text-align: center;">No gains</th>
-          </tr>
-          </tbody>
-        </table>
-        <h4>Skills</h4>
-        <table class="table table-striped">
-          <thead>
-          <tr>
-            <th scope="col">Skill name</th>
-            <th scope="col">Degree</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr v-for="(skill, index) in skills"
-              v-bind:key="index" >
-            <th scope="row">{{ skill.skill.name }}</th>
-            <td>{{ skill.level }}</td>
-          </tr>
-          <tr v-if="!skills.length">
-            <th colspan="3" style="text-align: center;">No skills</th>
-          </tr>
-          </tbody>
-        </table>
+        <div class="row" style="margin: 2rem auto;">
+          <div class="col-6">
+            <h4>
+              Skills Progress
+            </h4>
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Degree</th>
+                <th scope="col">Date</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="(sg, index) in skillGains"
+                  v-bind:key="index">
+                <th scope="row">{{ sg }}</th>
+                <td>{{ '' }}</td>
+                <td>{{ sg.date }}</td>
+              </tr>
+              <tr v-if="!skillGains.length">
+                <th colspan="3" style="text-align: center;">No gains</th>
+              </tr>
+              </tbody>
+            </table></div>
+          <div class="col-6">
+            <h4>Skills</h4>
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th scope="col">Skill name</th>
+                <th scope="col">Degree</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="(skill, index) in skills"
+                  v-bind:key="index" >
+                <th scope="row">{{ skill.skill.name }}</th>
+                <td>{{ skill.level }}</td>
+              </tr>
+              <tr v-if="!skills.length">
+                <th colspan="3" style="text-align: center;">No skills</th>
+              </tr>
+              </tbody>
+            </table></div>
+        </div>
         <h4>
           Last Lessons
         </h4>

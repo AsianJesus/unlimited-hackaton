@@ -1,21 +1,24 @@
 <template>
   <div class="login-page row">
-    <div class="login-body col-12 col-md-6 offset-md-3">
+    <div class="login-body align-self-center col-12 col-md-4 offset-md-4">
       <b-form>
         <b-form-input v-model="form.email"
+                      class="login-element"
                       placeholder="Email" />
         <b-form-input v-model="form.password"
                       type="password"
+                      class="login-element"
                       placeholder="Password" />
         <div class="login-button-holder">
           <b-button @click="login"
+                    variant="light"
                     :disabled="isLogining">
             Login
           </b-button>
         </div>
       </b-form>
-      <div>
-        <router-link :to="{name: 'Registration'}">Don't have an account?</router-link>
+      <div style="text-align: right;">
+        <router-link :to="{name: 'Registration'}">Qeydiyyatdan keç</router-link>
       </div>
     </div>
   </div>
@@ -58,5 +61,8 @@ export default {
 <style scoped>
 .login-button-holder {
   text-align: right;
+}
+.login-element{
+  margin: .5rem auto;
 }
 </style>
