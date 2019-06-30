@@ -2,7 +2,7 @@
   <div class="course-completed">
     <div class= "row courses" style="padding-left: 33rem; padding-top: 3rem; ">
       <div>
-        <h2>Course name</h2>
+        <h2>{{ course.name }}</h2>
       </div>
     </div>
     <div>
@@ -10,10 +10,10 @@
         <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">First name</th>
-          <th scope="col">Last name</th>
-          <th scope="col">Level</th>
-          <th scope="col">Max strike</th>
+          <th scope="col">Ad</th>
+          <th scope="col">Soyad</th>
+          <th scope="col">Points</th>
+          <th scope="col">Maksimal davamiyyət</th>
         </tr>
         </thead>
         <tbody>
@@ -22,8 +22,8 @@
           <th scope="row">{{ index + 1}}</th>
           <td>{{ user.name }}</td>
           <td>{{ user.surname }}</td>
-          <td>{{ user.level }}</td>
-          <td>{{ user.max_strike }}</td>
+          <td>{{ user.points }}</td>
+          <td>{{ user.max_week_streak }}</td>
         </tr>
         </tbody>
       </table>

@@ -2,7 +2,7 @@
   <div class="my-friends-component">
     <div class="row">
       <profile-navbar />
-      <div class="col-9">
+      <div class="col-8" style="padding-top: 1rem;">
         <b-card-group deck>
           <b-card :img-src="user.avatar ? `${baseServerURL}/../${user.avatar}` : null"
                   class="user-card"
@@ -14,13 +14,18 @@
             <b-card-text>
               {{ user.name }} {{ user.surname }}
             </b-card-text>
-            <b-card-footer>
+            <b-card-footer @click="$event.stopPropagation()">
               <b-button @click="isFriend(user.id) ? unfriend(user.id) : friend(user.id)"
                         :variant="isFriend(user.id) ? 'warning': 'success'"
-              >{{ isFriend(user.id) ? 'Unfriend' : 'Friend '}}</b-button>
+              >{{ isFriend(user.id) ? 'Dostluqdan çıxard' : 'Dostluq at '}}</b-button>
             </b-card-footer>
           </b-card>
         </b-card-group>
+        <div v-if="!users.length">
+          <h4>
+            Sizin dostuvuz yoxdur
+          </h4>
+        </div>
       </div>
             <!--<img v-if="!user.avatar"
                  src="@/assets/user_avatar.png"
@@ -44,11 +49,6 @@
                     }"
             >{{ isFriend(user.id) ? 'Unfriend' : 'Friend '}}</button>
           </div> -->
-      <div v-if="!users.length">
-        <h4>
-          Sizin dostuvuz yoxdur
-        </h4>
-      </div>
     </div>
   </div>
 </template>

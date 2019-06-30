@@ -17,7 +17,9 @@
             </div>
             <div class="col">
               <div>
-                {{ c.name }} {{ c.surname }}
+                <router-link :to="{name: 'UserProfile', params: {id: c.id}}">
+                  {{ c.name }} {{ c.surname }}
+                </router-link>
               </div>
               <div style="font-size: .9rem; color: #00000080">
                 {{ c.last_message }}
@@ -25,7 +27,7 @@
             </div>
         </div>
       </div>
-      <div class="col-7 messages-body"
+      <div class="col messages-body"
            v-if="selectedChat !== null">
         <div class="new-message-body" @keydown="checkKey">
           <b-form-input v-model="newMessage" />

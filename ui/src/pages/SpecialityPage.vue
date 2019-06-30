@@ -4,6 +4,7 @@
         <b-nav-item :to="{ name: 'Field', params: {name: field.name} }"
                     style="font-size: 1.2rem"
         > {{ field.name }} </b-nav-item>
+        <hr>
         <!--<b-nav-item :to="{ name: 'Field', params: {name: name} }">Top</b-nav-item>-->
         <b-nav-item v-for="(speciality, index) in specialities"
                     v-bind:key="index"
@@ -30,7 +31,7 @@
                   <div style="text-align: right;">
                     <router-link :to="{ name: 'Course', params: { id: course.id }}"
                                  class="btn btn-primary" >
-                      View course
+                      Ətraflı
                     </router-link>
                   </div>
                 </div>

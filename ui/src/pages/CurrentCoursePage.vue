@@ -3,52 +3,58 @@
     <div class= "row courses">
       <h2  class="col-12 " style="padding-left: 6rem;">{{ course.name }}</h2>
       <div class="col-10 description">
-        <div class="col-11" >
+        <div>
           <p>{{ course.description }}</p>
         </div>
-        <div class="l-cards-holder row">
-          <div class="l-card-holder  col-4"
-               v-for="(element, index) in elements"
-               v-bind:key="index"
-               @click="openLesson(element)"
-               v-if="!element.lesson_id" >
-            <div class="l-card"
-                 :class="{
-                    'success': element.my_passes_count,
-                    'disabled': isDisabled(index)
-                  }"
-            >
-              <div>{{ element.name }}</div>
-              <div>Estimated time: {{ element.required_time }} minutes</div>
+        <div class="row">
+          <div class="l-cards-holder col-8 offset-2">
+            <div class="l-card-holder"
+                 v-for="(element, index) in elements"
+                 v-bind:key="index"
+                 v-if="!element.lesson_id" >
+              <lesson-component v-bind:value="element"
+                                :success="element.my_passes_count !== 0"
+                                custom-buttons>
+                <template slot="buttons" v-if="!isDisabled(index)">
+                  <div style="text-align: right;">
+                    <b-button variant="outline-info"
+                              @click="openLesson(element)">
+                      Davam et
+                    </b-button>
+                  </div>
+                </template>
+              </lesson-component>
             </div>
-          </div>
-          <div class="l-card-holder col-3"
-               @click="openExam(element)"
-               v-else>
-            <div class="l-card"
-                 :class="{
+            <div class="l-card-holder"
+                 @click="openExam(element)"
+                 v-else>
+              <div class="l-card"
+                   :class="{
                   'success': hasPassed(element),
                   'error': element.my_passes && element.my_passes.length && !hasPassed(element)
                  }">
-              Exam
+                Exam
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div class="col-2 inf">
-        <div>Estimated time: {{ course.totalTime }} minute(s) </div>
-        <div>Learns count: {{ course.users_count }} </div>
-        <div>Completed: {{ course.completed_users_count }} </div>
-        <div><a href="#">Who completed</a></div>
-        <div>Failed: {{ course.failed_users_count }} </div>
-        <div>Remaining lessons: {{ course.remainingLessons }} </div>
+        <div>Müddət: {{ course.totalTime }} minute(s) </div>
+        <div>İştirakçıların sayı: {{ course.users_count }} </div>
+        <div>Bitirənlərin sayı: {{ course.completed_users_count }} </div>
+        <div>Bitirə bilmıyənlərin sayı: {{ course.failed_users_count }} </div>
+        <div>Qalan dərslər: {{ course.remainingLessons }} </div>
+        <div>
+          <router-link :to="{ name: 'CourseDashboard', params: { id: id }}">Bitirənlər</router-link>
+        </div>
       </div>
     </div>
     <div style="text-align: center;"
          v-if="canLeave" >
       <b-button @click="leave"
                 variant="outline-danger">
-        Leave course
+        Kursu bitir
       </b-button>
     </div>
   </div>
@@ -56,8 +62,12 @@
 
 <script>
 import axios from 'axios'
+import LessonComponent from '../components/LessonComponent'
 export default {
   name: 'CurrentCoursePage',
+  components: {
+    LessonComponent
+  },
   data () {
     return {
       course: {},
@@ -88,7 +98,7 @@ export default {
         this.course = data
         this.lessons = data.lessons
         this.exams = data.exams
-        this.course.totalTime = this.lessons.reduce((a, b) => a + b['required_time'], 0)
+        this.course.totalTime = Math.floor(this.lessons.reduce((a, b) => a + b['required_time'], 0))
         let passedLessonsCount = this.lessons.filter(l => l.my_passes_count).length
         this.course.remainingLessons = this.lessons.length - passedLessonsCount
         this.elements = JSON.parse(JSON.stringify(this.lessons))
@@ -147,20 +157,6 @@ export default {
   background-color: #30303020
 }
 
-.l-card::after{
-  width: 5px;
-  position: absolute;
-  top: 50%;
-  bottom: 0;
-  right: 0;
-  transform: translateY(-50%);
-  margin: auto;
-  content: '>';
-}
-
-.l-card-holder:last-of-type .l-card::after{
-  content: '';
-}
 .join-course {
   border-radius: 10rem;
 }
@@ -173,5 +169,8 @@ export default {
 }
 .error {
   background-color: red;
+}
+.inf{
+  text-align: left;
 }
 </style>

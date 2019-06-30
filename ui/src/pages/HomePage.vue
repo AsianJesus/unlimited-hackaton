@@ -21,7 +21,7 @@
                 <img src="@/assets/friends.png"> Dostlar qazandırır
               </li>
               <li>
-                <img src="@/assets/mentor.png"> Mentorlar ilə kifirlik
+                <img src="@/assets/mentor.png"> Mentorlar ilə ikfirlik
               </li>
             </ul>
           </div>
@@ -52,7 +52,7 @@
             <p class="card-text" style="text-align: left;">{{ getDescription(field) }}</p>
             <button @click="$router.push({ name: 'Field', params: { name: field.name }})"
                 href="#"
-                    class="btn btn-primary">Go
+                    class="btn btn-primary">Davam
               <font-awesome-icon :icon="iconCaretRight"/>
             </button>
           </div>

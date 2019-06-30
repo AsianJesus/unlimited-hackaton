@@ -21,12 +21,12 @@
                             v-model="form.email"
                             :state="showErrors && firstStageErrors.email ? false : null"
               />
-              <b-form-input placeholder="Password"
+              <b-form-input placeholder="Şifrə"
                             type="password"
                             class="registration-input"
                             v-model="form.password"
                             :state="showErrors && firstStageErrors.password ? false : null" />
-              <b-form-input placeholder="Repeat password"
+              <b-form-input placeholder="Təkrar şifrə"
                             type="password"
                             class="registration-input"
                             v-model="repeatPassword"
@@ -37,23 +37,23 @@
         <div  v-else-if="currentStep === 1">
           <b-form>
             <b-input-group>
-              <b-form-input placeholder="Name"
+              <b-form-input placeholder="Ad"
                             v-model="form.name"
                             class="registration-input"
                             :state="showErrors && secondStageErrors.name? false : null" />
-              <b-form-input placeholder="Surname"
+              <b-form-input placeholder="Soyad"
                             v-model="form.surname"
                             class="registration-input"
                             :state="showErrors && secondStageErrors.surname ? false : null" />
             </b-input-group>
-            <b-form-textarea  placeholder="Hobbies"
+            <b-form-textarea  placeholder="Hobbi"
                               class="registration-input"
                               v-model="form.hobby" />
           </b-form>
         </div>
         <div  v-else-if="currentStep === 2">
           <h4>
-            Languages
+            Dillər
           </h4>
           <multiselect  :options="availableLanguages"
                         v-model="form.languages"
@@ -63,7 +63,7 @@
                         :close-on-select="false"
                         multiple />
           <h4>
-            Skills
+            Bacarıqlar
           </h4>
           <multiselect  :options="availableSkills"
                         v-model="form.skills"
@@ -78,13 +78,13 @@
         <div class="col" style="text-align: left;">
           <b-button @click="currentStep--"
                     :disabled="!canGoLeft">
-            Previous
+            Geri
             <font-awesome-icon  :icon="faCaretSquareLeft" />
           </b-button>
         </div>
         <div class="col" style="text-align: right;">
           <b-button @click="goNext">
-            Next
+            Növbəti
             <font-awesome-icon  :icon="faCaretSquareRight" />
           </b-button>
         </div>

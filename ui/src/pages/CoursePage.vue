@@ -4,7 +4,7 @@
       <h2  class="col-12 "> {{ course.name }}</h2>
       <div class="col-10 description">
         <p>{{ course.description }}</p>
-        <div class="l-cards-holder row">
+        <!--<div class="l-cards-holder row">
           <div class="l-card-holder  col-4"
                v-for="(lesson, index) in lessons"
                v-bind:key="index">
@@ -13,22 +13,31 @@
               <div>Estimated time: {{ lesson.required_time }} minutes</div>
             </div>
           </div>
+        </div>-->
+        <div>
+          <div v-for="(lesson, index) in lessons"
+               v-bind:key="index"
+               class="course-lesson-element row">
+            <div class="col-8 offset-2">
+              <lesson-component v-bind:value="lesson"/>
+            </div>
+          </div>
         </div>
         <div class="join-course-holder">
           <b-button class="join-course"
                     variant="outline-primary"
                     @click="join" >
-            Join course
+            Qoşul
           </b-button>
         </div>
       </div>
       <div class="col-2 inf">
-        <div>Estimated time: {{ course.totalTime }} </div>
-        <div>Learns count: {{ course.users_count }} </div>
-        <div>Completed: {{ course.completed_users_count }} </div>
-        <div>Failed: {{ course.failed_users_count }} </div>
+        <div>Müddət: {{ course.totalTime }} dəqiqə </div>
+        <div>İştirakçıların sayı: {{ course.users_count }} </div>
+        <div>Bitirənlərin sayı: {{ course.completed_users_count }} </div>
+        <div>Bitirə bilmıyənlərin sayı: {{ course.failed_users_count }} </div>
         <div>
-          <router-link :to="{ name: 'CourseDashboard', params: { id: id }}">Who completed</router-link>
+          <router-link :to="{ name: 'CourseDashboard', params: { id: id }}">Bitirənlər</router-link>
         </div>
       </div>
     </div>
@@ -37,8 +46,12 @@
 
 <script>
 import axios from 'axios'
+import LessonComponent from '../components/LessonComponent'
 export default {
   name: 'CoursePage',
+  components: {
+    LessonComponent
+  },
   data () {
     return {
       course: {}
@@ -122,5 +135,12 @@ export default {
 }
 .join-course {
   border-radius: 10rem;
+}
+
+.course-lesson-element{
+  margin: 1rem auto;
+}
+.inf {
+  text-align: left;
 }
 </style>

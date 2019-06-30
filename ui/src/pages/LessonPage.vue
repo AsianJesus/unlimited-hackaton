@@ -35,7 +35,7 @@
     <div v-if="canMarkRead">
       <b-button variant="outline-primary"
                 @click="markAsRead" >
-        Mark as read
+        Bitir
       </b-button>
     </div>
   </div>

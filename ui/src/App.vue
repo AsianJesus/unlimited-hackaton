@@ -16,10 +16,10 @@
           <div class="btn-group btn-group-lg" role="group" aria-label="...">
             <button type="button"
                     @click="$router.push({ name: 'Login' })"
-                    class="btn btn-light toolbar-button">Login</button>
+                    class="btn btn-light toolbar-button">Giriş</button>
             <button type="button"
                     @click="$router.push({ name: 'Registration' })"
-                    class="btn btn-light toolbar-button">Sign up</button>
+                    class="btn btn-light toolbar-button">Qeydiyyat</button>
           </div>
         </div>
       </div>
@@ -28,13 +28,13 @@
             v-else>
         <b-button varinat="success"
                   @click="$router.push({name: 'MyProfile'})">
-          Profile
+          Şəxsi kabinet
           <font-awesome-icon :icon="iconUser"
                              :scale="1.5" />
         </b-button>
         <b-button variant="primary"
                   @click="logout" >
-          Log out
+          Çıxış
           <font-awesome-icon :icon="iconLogout"
                              :scale="1.5"/>
         </b-button>

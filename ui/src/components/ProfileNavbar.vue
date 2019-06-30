@@ -1,5 +1,5 @@
 <template>
-  <ul class="nav flex-column">
+  <ul class="nav flex-column profile-navbar">
     <li @click="showCrop = true"
         style="text-align: center;">
       <img :src="userAvatar"
@@ -13,7 +13,7 @@
       <b-button-group>
         <b-button @click="isFriend(user.id) ? unfriend(user.id) : friend(user.id)"
                 :variant="isFriend(user.id) ? 'warning' :'success'"
-        >{{ isFriend(user.id) ? 'Unfriend' : 'Friend '}}</b-button>
+        >{{ isFriend(user.id) ? 'Dostluqdan çıxard' : 'Dostluq at'}}</b-button>
         <b-button variant="primary"
                   @click="sendMessage" >
           <font-awesome-icon :icon="messageIcon" />
@@ -27,21 +27,21 @@
       <router-link class="nav-link active"
                    :to="{ name: 'MyProfile' }"
                    style="font-size: 1.3rem;">
-        Dashboard
+        Hesabat
       </router-link>
     </li>
     <li class="nav-item">
       <router-link class="nav-link"
                    :to="{ name: 'MyFriends' }"
                    style="font-size: 1.3rem;">
-        Friends
+        Dostlar
       </router-link>
     </li>
     <li class="nav-item">
       <router-link class="nav-link"
                    :to="{ name: 'Messenger' }"
                    style="font-size: 1.3rem;">
-        Messenger
+        Mesajlar
       </router-link>
     </li>
     <vue-image-upload v-if="!readonly"
@@ -130,5 +130,8 @@ export default {
 }
 .nav {
   text-align: left;
+}
+.profile-navbar {
+  padding-top: 1rem;
 }
 </style>

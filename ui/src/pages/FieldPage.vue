@@ -2,6 +2,7 @@
   <div class="field-page row">
     <b-nav vertical style="text-align: left;" >
       <b-nav-item :to="{ name: 'Field', params: {name: name} }" style="font-size: 1.2rem;"> {{ name }} </b-nav-item>
+      <hr>
       <!--<b-nav-item :to="{ name: 'Field', params: {name: name} }">Top</b-nav-item>-->
       <b-nav-item v-for="(speciality, index) in specialities"
                   v-bind:key="index"

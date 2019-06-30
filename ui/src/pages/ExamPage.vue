@@ -2,7 +2,7 @@
   <div class="exam-page">
     <div class= "row courses" style="padding-left: 37rem; padding-top: 3rem; ">
       <div>
-        <h2>Exam</h2>
+        <h2>İmtahan</h2>
       </div>
     </div>
     <div class="row exam-question"
@@ -11,7 +11,7 @@
       <div class="col-sm-8 offset-2">
         <div class="card">
           <div class="card-body">
-            <h6 class="card-title">Question #{{ index + 1 }}</h6>
+            <h6 class="card-title">Sual #{{ index + 1 }}</h6>
             <p class="card-text">{{ question.question }}?</p>
             <!-- Group of default radios - option 1 -->
             <div class="custom-control custom-radio"
@@ -33,7 +33,7 @@
       <div class="submit-btn" style="text-align: center; padding-top: 1rem;">
         <button type="button"
                 @click="endExam"
-                class="btn btn-primary" >Submit</button>
+                class="btn btn-primary" >Bitir</button>
       </div>
     </div>
   </div>
@@ -72,7 +72,7 @@ export default {
       })
     },
     endExam () {
-      if (!confirm('Are you sure?')) {
+      if (!confirm('Əminsiniz?')) {
         return
       }
       let correctAnswers = this.questions.filter(q => q.answers[q.selected].correct)
@@ -85,10 +85,10 @@ export default {
       this.saveResults(score)
     },
     passExam (score) {
-      alert(`Congragulations! You earned ${score}% and passed`)
+      alert(`Təbriklər! Siz ${score}% topladız`)
     },
     failExam (score) {
-      alert(`We are sorry to tell you, but you got only ${score}% and failed the exam`)
+      alert(`Təəsüfki siz ${score}% topladız və imtahanı keçə bilmədiz`)
     },
     saveResults (score) {
       axios.post(`exams/${this.id}`, {

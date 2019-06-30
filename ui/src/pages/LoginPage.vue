@@ -8,12 +8,12 @@
         <b-form-input v-model="form.password"
                       type="password"
                       class="login-element"
-                      placeholder="Password" />
+                      placeholder="Şifrə" />
         <div class="login-button-holder">
           <b-button @click="login"
                     variant="light"
                     :disabled="isLogining">
-            Login
+            Giriş
           </b-button>
         </div>
       </b-form>

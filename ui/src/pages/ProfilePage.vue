@@ -2,22 +2,22 @@
   <div class="profile-page">
     <div class="row">
       <profile-navbar />
-      <div class="col-10 graph">
+      <div class="col-8 graph">
         <!-- Insert chart here -->
         <line-chart v-if="datacollection"
                     ref="chart"
                     v-bind:chart-data="datacollection"
                     :options="chartOptions" />
         <div style="text-align: right; margin-top: 1rem;">
-          <b-dropdown text="Select interval"
+          <b-dropdown text="İntervalı seç"
                       variant="success">
-            <b-dropdown-item @click="loadStatistics('w')">Week</b-dropdown-item>
-            <b-dropdown-item @click="loadStatistics('m')">Month</b-dropdown-item>
+            <b-dropdown-item @click="loadStatistics('w')">Həftə</b-dropdown-item>
+            <b-dropdown-item @click="loadStatistics('m')">Ay</b-dropdown-item>
           </b-dropdown>
         </div>
         <div class="row">
           <div class="col-3 prg" >
-            <p>Current streak: {{ weekInfo.streak }} </p>
+            <p>Davamiyyət: {{ weekInfo.streak }} həftə</p>
             <div class="progress">
               <div class="progress-bar progress-bar-striped bg-success"
                    role="progressbar" style="width: 25%" :aria-valuenow="weekInfo.points"
@@ -36,35 +36,35 @@
         <div class="row" style="margin: 2rem auto;">
           <div class="col-6">
             <h4>
-              Skills Progress
+              Bacarıqların inkişafı
             </h4>
             <table class="table table-striped">
               <thead>
               <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Degree</th>
-                <th scope="col">Date</th>
+                <th scope="col">Ad</th>
+                <th scope="col">Dərəcə</th>
+                <th scope="col">Tarix</th>
               </tr>
               </thead>
               <tbody>
               <tr v-for="(sg, index) in skillGains"
                   v-bind:key="index">
-                <th scope="row">{{ sg }}</th>
-                <td>{{ '' }}</td>
+                <th scope="row">{{ sg.skill.name }}</th>
+                <td>1</td>
                 <td>{{ sg.date }}</td>
               </tr>
               <tr v-if="!skillGains.length">
-                <th colspan="3" style="text-align: center;">No gains</th>
+                <th colspan="3" style="text-align: center;">Yoxdur</th>
               </tr>
               </tbody>
             </table></div>
           <div class="col-6">
-            <h4>Skills</h4>
+            <h4>Bacarıqlar</h4>
             <table class="table table-striped">
               <thead>
               <tr>
-                <th scope="col">Skill name</th>
-                <th scope="col">Degree</th>
+                <th scope="col">Ad</th>
+                <th scope="col">Dərəcə</th>
               </tr>
               </thead>
               <tbody>
@@ -74,20 +74,20 @@
                 <td>{{ skill.level }}</td>
               </tr>
               <tr v-if="!skills.length">
-                <th colspan="3" style="text-align: center;">No skills</th>
+                <th colspan="3" style="text-align: center;">Yoxdur</th>
               </tr>
               </tbody>
             </table></div>
         </div>
         <h4>
-          Last Lessons
+          Sonuncu dərslər
         </h4>
         <table class="table table-striped" >
           <thead>
           <tr>
-            <th scope="col">Course</th>
-            <th>Lesson</th>
-            <th scope="col">Date</th>
+            <th scope="col">Kurs</th>
+            <th>Dərs</th>
+            <th scope="col">Tarix</th>
           </tr>
           </thead>
           <tbody>
@@ -107,7 +107,7 @@
           </tr>
           <tr v-if="!lastLessons.length">
             <th colspan="3" style="text-align: center;">
-              No Last Lessons
+              Yoxdur
             </th>
           </tr>
           </tbody>
