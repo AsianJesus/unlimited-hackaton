@@ -122,9 +122,6 @@ export default {
   }
 }
 </script>
-
-
-
 <style scoped>
   .loz{
     font-size: 1.8rem;

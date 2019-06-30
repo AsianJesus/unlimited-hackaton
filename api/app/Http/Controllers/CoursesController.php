@@ -31,7 +31,7 @@ class CoursesController extends Controller
 
     public function getDashboard ($id) {
         return $this->course::where('id', $id)
-            ->with('completed_users')
+            ->with('completed_users.user')
             ->first();
     }
 

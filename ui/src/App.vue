@@ -106,7 +106,7 @@ export default {
 }
 
 .logo-image{
-  height: 60px;
+  height: 60px !important;
 }
 
 .toolbar-button {

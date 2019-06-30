@@ -14,16 +14,20 @@
           <th scope="col">Soyad</th>
           <th scope="col">Points</th>
           <th scope="col">Maksimal davamiyyət</th>
+          <th scope="col">Tarix</th>
         </tr>
         </thead>
         <tbody>
         <tr v-for="(user, index) in users"
-            v-bind:key="index">
+            v-bind:key="index"
+            style="cursor:pointer;"
+            @click="$router.push({ name: 'UserProfile', params: {id: user.user_id }})" >
           <th scope="row">{{ index + 1}}</th>
-          <td>{{ user.name }}</td>
-          <td>{{ user.surname }}</td>
-          <td>{{ user.points }}</td>
-          <td>{{ user.max_week_streak }}</td>
+          <td>{{ user.user.name }}</td>
+          <td>{{ user.user.surname }}</td>
+          <td>{{ user.user.points }}</td>
+          <td>{{ user.user.max_week_streak }}</td>
+          <td>{{ user.created_at }}</td>
         </tr>
         </tbody>
       </table>
@@ -45,7 +49,7 @@ export default {
       return this.course.completed_users || []
     },
     id () {
-      return this.$route
+      return this.$route.params.id
     }
   },
   watch: {
@@ -58,7 +62,7 @@ export default {
   },
   methods: {
     load (id) {
-      axios.get(`course/${id || this.id}/dashboard`).then(({ data }) => {
+      axios.get(`courses/${id || this.id}/dashboard`).then(({ data }) => {
         this.course = data
       })
     }
