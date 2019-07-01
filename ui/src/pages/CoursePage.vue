@@ -94,7 +94,7 @@ export default {
     },
     join () {
       if (!this.$store.state.isLogged) {
-        this.$router.push({ name: 'Login' })
+        this.$router.push({ name: 'Login'})
         return
       }
       axios.post(`/courses/${this.id}`).then(() => {

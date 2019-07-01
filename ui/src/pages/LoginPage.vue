@@ -18,7 +18,7 @@
         </div>
       </b-form>
       <div style="text-align: right;">
-        <router-link :to="{name: 'Registration'}">Qeydiyyatdan keç</router-link>
+        <router-link :to="{name: 'Registration', params: {callback: callback}}">Qeydiyyatdan keç</router-link>
       </div>
     </div>
   </div>
@@ -28,6 +28,11 @@
 import axios from 'axios'
 export default {
   name: 'LoginPage',
+  computed: {
+    callback () {
+      return this.$route.params.callback
+    }
+  },
   data () {
     return {
       form: {
@@ -47,8 +52,12 @@ export default {
         this.$cookie.set('token', response.data.token)
         this.$store.commit('setUserInfo', response.data.user)
         this.$store.commit('setToken', response.data.token)
-        this.$router.push({ name: 'MyProfile' })
         this.isLogining = false
+        if (this.callback) {
+          this.callback()
+        } else {
+          this.$router.push({name: 'MyProfile'})
+        }
       }).catch(() => {
         alert('Username or password is invalid')
         this.isLogining = false

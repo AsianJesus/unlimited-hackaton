@@ -190,7 +190,7 @@ class FieldsSeeder extends Seeder
     private function passLesson($users, $lesson, $date) {
         foreach ($users as $user_id) {
             UserLesson::create(['user_id' => $user_id, 'lesson_id' => $lesson['id']]);
-            $points_change = UserPointChange::where('user_id', $user_id)->where('date', date('Y-m-d'))->first();
+            $points_change = UserPointChange::where('user_id', $user_id)->where('date', $date)->first();
             if ($points_change == null) {
                 UserPointChange::create(['user_id' => $user_id, 'date' => $date, 'points' => 1]);
             } else {

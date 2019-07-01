@@ -139,6 +139,9 @@ export default {
         name: !this.form.name,
         surname: !this.form.surname
       }
+    },
+    callback () {
+      return this.$route.params.callback
     }
   },
   mounted () {
@@ -179,7 +182,11 @@ export default {
         this.$cookie.set('token', response.data.token)
         this.$store.commit('setUserInfo', response.data.user)
         this.$store.commit('setToken', response.data.token)
-        this.$router.push({ name: 'MyProfile' })
+        if (this.callback) {
+          this.callback()
+        } else {
+          this.$router.push({name: 'MyProfile'})
+        }
       }).catch(() => {
         alert('Email is already in use')
       })

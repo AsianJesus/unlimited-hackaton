@@ -21,7 +21,7 @@
                 <img src="@/assets/friends.png"> Dostlar qazandırır
               </li>
               <li>
-                <img src="@/assets/mentor.png"> Mentorlar ilə ikfirlik
+                <img src="@/assets/mentor.png"> Mentorlar ilə iş birliyi
               </li>
             </ul>
           </div>

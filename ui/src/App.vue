@@ -77,6 +77,9 @@ export default {
     loadUserInfo () {
       axios.get('/user').then(({ data }) => {
         this.$store.commit('setUserInfo', data)
+      }).catch(() => {
+        this.$cookie.set('token', '')
+        this.$store.commit('setToken', null)
       })
     }
   }

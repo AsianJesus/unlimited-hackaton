@@ -35,7 +35,7 @@ export default new Router({
       component: LoginPage
     },
     {
-      path: '/profile',
+      path: '/my-profile',
       name: 'MyProfile',
       component: ProfilePage
     },
@@ -75,12 +75,12 @@ export default new Router({
       component: ExamPage
     },
     {
-      path: '/profile/friends',
+      path: '/my-profile/friends',
       name: 'MyFriends',
       component: MyFriendsComponent
     },
     {
-      path: '/profile/messenger',
+      path: '/my-profile/messenger',
       name: 'Messenger',
       component: ChatsPage
     },

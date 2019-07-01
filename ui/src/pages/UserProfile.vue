@@ -151,7 +151,7 @@ export default {
   },
   watch: {
     id () {
-      setTimeout(() => this.initialize, 1000)
+      this.initialize()
     }
   },
   mounted () {
@@ -173,7 +173,8 @@ export default {
     loadStatistics (chartInterval = 'w') {
       axios.get('/statistics/points', {
         params: {
-          interval: chartInterval
+          interval: chartInterval,
+          user_id: this.id
         }
       }).then(response => {
         this.datacollection = {

@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/test', function (Request $request) {
-   return '';
+   return date('Y-m-d');
 });
 Route::get('/test/time', function (Request $request) {
    return \App\Helper\Helper::getWeek();

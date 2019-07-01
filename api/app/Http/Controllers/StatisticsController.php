@@ -29,7 +29,7 @@ class StatisticsController extends Controller
         $interval = $request->input('interval', 'w');
 
         $date->modify('-1 '.($interval == 'w' ? 'week' : 'month'));
-        $user_id = $request->input('user_id') ?? auth()->id();
+        $user_id = $request->input('user_id', auth()->id());
         $points_change = UserPointChange::where('date', '>=', $date->format('Y-m-d'))
             ->where('user_id', $user_id)
             ->get()->toArray();
@@ -47,7 +47,7 @@ class StatisticsController extends Controller
         return $result;
     }
     public function getWeekInformation(Request $request) {
-        $user_id = $request->input('user_id') ?? auth()->id();
+        $user_id = $request->input('user_id', auth()->id());
         $user = $this->user::find($user_id);
         $info = UserWeekNorm::where('user_id', $user_id)->where('week', Helper::getWeek())->first();
         return [
@@ -58,19 +58,19 @@ class StatisticsController extends Controller
     }
 
     public function getUserSkillsInfo (Request $request) {
-        $user_id = $request->input('user_id') ?? auth()->id();
+        $user_id = $request->input('user_id', auth()->id());
         return UserSkillGain::where('user_id', $user_id)
             ->with('skill')
             ->orderBy('created_at', 'desc')->get();
     }
     public function getUserSkills (Request $request) {
-        $user_id = $request->input('user_id') ?? auth()->id();
+        $user_id = $request->input('user_id', auth()->id());
         return UserSkill::where('user_id', $user_id)
             ->with('skill')->get();
     }
 
     public function getLastLessons (Request $request) {
-        $user_id = $request->input('user_id') ?? auth()->id();
+        $user_id = $request->input('user_id', auth()->id());
         return UserLesson::where('user_id', $user_id)
             ->with([ 'lesson.course' ])
             ->orderBy('created_at', 'desc')->get();
